@@ -18,10 +18,13 @@ import exceptions.InvalidBrowserException;
 
 public class BaseTest {
 
-	public WebDriver driver;
+	public static WebDriver driver;
 
-	FileInputStream fis1;
-	Properties configProp;
+	public static FileInputStream fis1;
+	public static Properties configProp;
+	
+	public static FileInputStream fis2;
+	public static Properties locatorsProp;
 
 	@BeforeTest
 	public void beforeTest() {
@@ -39,9 +42,24 @@ public class BaseTest {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		try {
+			fis2 = new FileInputStream("Properties\\locators.properties");
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		locatorsProp = new Properties();
+		try {
+			locatorsProp.load(fis2);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
-	@BeforeMethod
+	//@BeforeMethod
 	public void setUp() {
 		String browserName = configProp.getProperty("browser");
 		switch (browserName) {
