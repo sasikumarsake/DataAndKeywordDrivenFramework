@@ -20,7 +20,7 @@ public class AdcatinKeyAndDataDriven extends BaseTest {
 		app.type("username_textbox", testdataMap.get("username"));
 		app.type("password_textbox", testdataMap.get("password"));
 		app.click("login_button");
-
+ 
 		try {
 			Thread.sleep(5000);
 		} catch (InterruptedException e) {
